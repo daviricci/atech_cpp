@@ -7,6 +7,15 @@
 
 namespace core{
     void print_hello_word();
+    class fibonacci_01{
+        public:
+            static int fib(int n);
+    };
+    class fibonacci_02{
+        public:
+            static int fib(int n);
+
+    };
 }
 
 
