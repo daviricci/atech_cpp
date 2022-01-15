@@ -2,10 +2,43 @@
 // Created by davim on 15/01/2022.
 //
 #include "core.h"
-#include <iostream>
 #include <string>
+#include <utility>
+#include <iostream>
 namespace core {
-    void print_hello_word(){
-        std::cout<<"Hello World!"<<std::endl;
+    // message
+    Message::Message(std::string topic, std::string msg):topic(std::move(topic)),msg(std::move(msg)){}
+    Message::~Message(){}
+    std::string Message::get_msg(){return this->msg;}
+    std::string Message::get_topic(){return this->topic;}
+    //
+    //Subscriber
+    Subscriber::Subscriber() {}
+    Subscriber::~Subscriber() {}
+    void Subscriber::add_topic(std::string topic) {this->topics.push_back(topic);}
+    void Subscriber::show_message() {while(!this->msgs.empty()){Message msg = this->msgs.front();this->msgs.pop();
+        std::cout<<msg.get_msg()<<std::endl;}}
+    //
+    //Broker
+    Broker::Broker(){}
+    Broker::~Broker(){}
+    void Broker::forward(){
+        while(!this->msgs.empty()){
+            Message msg = this->msgs.front();
+            this->msgs.pop();
+            for(int i=0; i<this->subscribers.size();i++){
+                std::vector<std::string>::iterator topic;
+                for(topic = this->subscribers.at(i)->topics.begin();topic !=this->subscribers.at(i)->topics.end();++topic){
+                    std::string str_topic = *topic;
+                    if(str_topic==msg.get_topic()){
+                        this->subscribers.at(i)->msgs.push(msg);
+                    }
+                }
+            }
+        }
     }
+    void Broker::subscribe(Subscriber *subscriber){this->subscribers.push_back(subscriber);}
+    void Broker::receive(Message &new_message){this->msgs.push(new_message);}
+    //
+
 };
