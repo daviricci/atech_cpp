@@ -4,9 +4,12 @@
 
 #ifndef EXERCICIO_02_CORE_H
 #define EXERCICIO_02_CORE_H
+#include <map>
+#include <algorithm>
 #include <iostream>
+#include <string>
 namespace core {
-    void print_hello_world();
+    std::string remove_multiple_chars(const std::string& s);
 };
 
 

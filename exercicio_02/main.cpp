@@ -1,5 +1,7 @@
 #include "core.h"
 int main() {
-    core::print_hello_world();
+    std::cout<<core::remove_multiple_chars("daavii")<<std::endl;
+    std::cout<<core::remove_multiple_chars("juuulllliiiiaaananannanan")<<std::endl;
+    std::cout<<core::remove_multiple_chars("auuuuuuaaaaaaaaauuuuuuuuuuuuuuuuuaahuhuhuhuhruhruhauha")<<std::endl;
     return 0;
 }
