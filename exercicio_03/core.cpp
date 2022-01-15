@@ -2,9 +2,7 @@
 // Created by davim on 15/01/2022.
 //
 #include "core.h"
-#include <string>
-#include <utility>
-#include <iostream>
+
 namespace core {
     // message
     Message::Message(std::string topic, std::string msg):topic(std::move(topic)),msg(std::move(msg)){}

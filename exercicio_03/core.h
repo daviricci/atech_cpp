@@ -8,6 +8,9 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <string>
+#include <utility>
+#include <iostream>
 
 namespace core {
     class Message{
