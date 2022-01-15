@@ -44,6 +44,34 @@ namespace core {
             std::vector<Subscriber*> subscribers;
     };
 
+    class Publisher{
+        public:
+            Publisher();
+            ~Publisher();
+            void send_msg(Message &new_message, Broker &my_server);
+    };
+
+    class User{
+        /*
+         * Todo usuário é um Publisher e um Subscriber
+         * Quando o usuário atuar como Publisher, toda mensagem enviada terá um tópico fixo,
+         * sendo esse sua assinatura.
+         * Todo usuário tem seu vetor de tópicos de seus contatos, quais deseja receber
+         * mensagens, quando atuar como Subscriber
+         */
+        public:
+            User(std::string topic_signature, Broker *broker);
+            ~User();
+            void send_message(std::string msg);
+            void add_contact(std::string topic);
+            void show_message();
+            Subscriber *get_subscriber();
+        private:
+            std::string topic_signature;
+            Broker *broker;
+            Publisher publisher;
+            Subscriber subscriber;
+    };
 };
 
 
